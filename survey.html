@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="surveyModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Thank you for visiting!</h2>
+        <p>Please take a moment to complete our survey:</p>
+        
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+<script>
+    const socket = io('https://youtok-api.momochi.me');
+
+    socket.on('initiateSurvey', () => {
+        
+        const surveyModal = document.getElementById('surveyModal');
+        surveyModal.style.display = 'block';
+
+    });
+    const closeBtn = document.querySelector('.close');
+    closeBtn.addEventListener('click', () => {
+        const surveyModal = document.getElementById('surveyModal');
+        surveyModal.style.display = 'none';
+    });
+</script>
+</body>
+</html>
